@@ -23,7 +23,7 @@ type Startup() =
             .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()
                 .Services
-            .AddRemoting<BookService>()
+            .AddRemoting<ArticlesService>()
             .AddBoleroHost()
 #if DEBUG
             .AddHotReload(templateDir = __SOURCE_DIRECTORY__ + "/../liveinchamovka.Client")
@@ -43,6 +43,7 @@ type Startup() =
                 endpoints.UseHotReload()
 #endif
                 endpoints.MapBlazorHub() |> ignore
+                endpoints.MapFallbackToPage("/settings","/Settings") |> ignore
                 endpoints.MapFallbackToPage("/_Host") |> ignore)
         |> ignore
 

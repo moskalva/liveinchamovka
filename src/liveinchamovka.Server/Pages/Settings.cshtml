@@ -1,5 +1,7 @@
-@page "/Settings"
+@page "/"
 @namespace liveinchamovka.Server
+@using Bolero.Server.RazorHost
+@inject IBoleroHostConfig BoleroHostConfig
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,6 +22,7 @@
         </a>
       </div>
     </nav>
-    <div id="main">Settings page</div>
+    <div id="main">@(await Html.RenderComponentAsync<liveinchamovka.Client.Main.MyApp>(BoleroHostConfig))</div>
+    @Html.RenderBoleroScript(BoleroHostConfig)
   </body>
 </html>
